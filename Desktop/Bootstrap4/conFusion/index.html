@@ -34,7 +34,7 @@
                                 class="fa fa-address-card fa-lg"></span> Contact</a></li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
+                    <a id="loginButton">
                         <span class="fa fa-sign-in"></span> Login
                     </a>
                 </span>
@@ -47,7 +47,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-titel">Login</h4>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" id="closeLoginButton">
                         &times;
                     </button>
                 </div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-row">
                             <button type="button" class="btn btn-secondary btn-sm ml-auto"
-                                data-dismiss="modal">Cancel</button>
+                                id="cancelLoginButton">Cancel</button>
                             <button type="submit" class="btn btn-primary btn-sm ml-1">Sign in</button>
                         </div>
                     </form>
@@ -88,7 +88,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-titel">Reserve a Table</h4>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" id="closeReserveButton">
                         &times;
                     </button>
                 </div>
@@ -163,7 +163,7 @@
                         <div class="form-group row">
                             <div class="offset-md-2 col-md-10">
                                 <button type="button" class="btn btn-secondary ml-auto"
-                                    data-dismiss="modal">Cancel</button>
+                                    id="cancelReserveButton">Cancel</button>
                                 <button type="submit" class="btn btn-primary">
                                     Reserve
                                 </button>
@@ -188,8 +188,8 @@
                     <img src="img/logo.png" class="img-fluid">
                 </div>
                 <div class="col-12 col-sm align-self-center">
-                    <button type="button" class="btn btn-block btn-warning text-white" data-toggle="modal"
-                        data-target="#reserveModal"> Reserve Table</button>
+                    <button type="button" class="btn btn-block btn-warning text-white" id="reserveButton"> Reserve
+                        Table</button>
                 </div>
             </div>
         </div>
@@ -253,11 +253,11 @@
                     <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
-                    
-                        <button class="btn btn-danger btn-sm" id="carouselButton">
-                            <span class="fa fa-pause"></span>
-                        </button>
-                        
+
+                    <button class="btn btn-danger btn-sm" id="carouselButton">
+                        <span class="fa fa-pause"></span>
+                    </button>
+
                 </div>
             </div>
         </div>
@@ -381,22 +381,50 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#mycarousel').carousel({interval: 2000});
-
-            $('#carouselButton').click(function() {
-               if ($('#carouselButton').children('span').hasClass('fa-pause')) {
-                   $('#mycarousel').carousel('pause');
-                   $('#carouselButton').children('span').removeClass('fa-pause');
-                   $('#carouselButton').children('span').addClass('fa-play');
-
-               } else if ($('#carouselButton').children('span').hasClass('fa-play')) {
-                   $('#mycarousel').carousel('cycle');
-                   $('#carouselButton').children('span').removeClass('fa-play');
-                   $('#carouselButton').children('span').addClass('fa-pause');
-               }
-                
+        $(document).ready(function () {
+            $('#mycarousel').carousel({
+                interval: 2000
             });
+
+            $('#carouselButton').click(function () {
+                if ($('#carouselButton').children('span').hasClass('fa-pause')) {
+                    $('#mycarousel').carousel('pause');
+                    $('#carouselButton').children('span').removeClass('fa-pause');
+                    $('#carouselButton').children('span').addClass('fa-play');
+
+                } else if ($('#carouselButton').children('span').hasClass('fa-play')) {
+                    $('#mycarousel').carousel('cycle');
+                    $('#carouselButton').children('span').removeClass('fa-play');
+                    $('#carouselButton').children('span').addClass('fa-pause');
+                }
+
+            });
+
+            $("#loginButton").click(function () {
+                $("#loginModal").modal("show");
+            });
+
+            $("#closeLoginButton").click(function () {
+                $("#loginModal").modal("hide");
+            });
+
+            $("#cancelLoginButton").click(function () {
+                $("#loginModal").modal("hide");
+            });
+
+
+            $("#reserveButton").click(function () {
+                $("#reserveModal").modal("show");
+            });
+
+            $("#closeReserveButton").click(function () {
+                $("#reserveModal").modal("hide");
+            });
+
+            $("#cancelReserveButton").click(function () {
+                $("#reserveModal").modal("hide");
+            });
+
         });
     </script>
 </body>
